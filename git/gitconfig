@@ -1,6 +1,6 @@
 [user]
-	name = Si Beaumont
-	email = simonjbeaumont@gmail.com
+	name = Ascanio Vimercati Sanseverino
+	email = ascanio.vimercati@gmail.com
 [color]
 	diff = auto
 	status = auto
@@ -11,7 +11,7 @@
 	co = checkout
 	gl = log --graph --abbrev-commit --oneline --decorate
 [github]
-	user = simonjbeaumont
+	user = UfoRobot
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -x4,9
