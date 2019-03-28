@@ -1,8 +1,0 @@
-syntax: glob
-tags
-*.orig
-*.swp
-*~
-*.o
-tests/*.err
-.ropeproject/*
