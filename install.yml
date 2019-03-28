@@ -14,59 +14,15 @@
 ~/.gitconfig: git/gitconfig
 ~/.gitignore_global: git/gitignore_global
 
-# hg
-~/.hgignore: hg/hgignore
-~/.hgrc: hg/hgrc
-
-# mutt
-~/.mutt: mutt/
-~/.mutt/cache/.create-dir: /dev/null
-~/.mutt/temp/.create-dir: /dev/null
-~/.mbsyncrc:
-  comment_delim: '#'
-  template: mutt/mbsyncrc
-  subs:
-    - HOST
-    - USER
-~/.msmtprc:
-  template: mutt/msmtprc
-  comment_delim: '#'
-  subs:
-    - HOST
-    - USER
-    - FROM
-~/.notmuch-config:
-  template: mutt/notmuch-config
-  comment_delim: '#'
-  subs:
-    - PRIMARY_EMAIL
-    - OTHER_EMAIL
-~/.pull-ldap-wrapper.sh:
-  comment_delim: '#'
-  template: mutt/pull-ldap-wrapper.sh
-  subs:
-    - HOST
-    - BASE_PEOPLE
-    - BASE_GROUPS
-    - EXTRA_FIELDS_PEOPLE
-    - EXTRA_FIELDS_GROUPS
-
 # ssh
 ~/.ssh/config: ssh/config
 
 # tmux
 ~/.tmux.conf: tmux/tmux.conf
 
-# utop
-~/.utoprc: utop/utoprc
-
 # vim
 ~/.vim: vim/
 ~/.vimrc: vim/vimrc
-
-# vimperator
-~/.vimperator: vimperator/
-~/.vimperatorrc: vimperator/vimperatorrc
 
 # X
 ~/.Xmodmap: linux/Xmodmap
