@@ -60,7 +60,7 @@ set wildignore=*.o,*~,*.pyc   " Ignore compiled files
 set wildignore+=*.cmi,*.cmt,*.cmx,*.cmti,*.cmxa,*.annot,*.native,*.opt
 
 set ruler           " show current position
-set colorcolumn=80  " always show width marker
+"set colorcolumn=80  " always show width marker
 set number          " always show line numbers
 set cursorline      " highlight the current line
 
@@ -85,7 +85,7 @@ set lazyredraw      " don't redraw during macros
 
 set list                    " show invisibles
 set listchars=tab:┼─,eol:¬  " another nice option is tab:▸\ 
-set showbreak=↪\            " useful indication of wrapping
+set showbreak=\u21aa        " useful indication of wrapping
 
 set foldmethod=marker   " fold on markers
 set foldlevel=100       " ...but not by default
@@ -228,12 +228,8 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-Bundle 'simonjbeaumont/mustang-vim'
-if &t_Co >= 16 || has("gui_running")
-    set bg=dark
-    highlight ExtraWhitespace ctermbg=DarkRed ctermfg=Red
-endif
-silent! colorscheme mustang
+Bundle 'arcticicestudio/nord-vim'
+silent! colorscheme nord
 
 Bundle 'sjl/badwolf'
 
@@ -251,55 +247,13 @@ Bundle 'ekalinin/Dockerfile.vim'
 Bundle 'mileszs/ack.vim'
 nmap <leader>a :Ack!
 
-Bundle 'bling/vim-airline'
-let g:airline_theme             = 'powerlineish'
-let g:airline_theme_patch_func = 'AirlineThemePatch'
-function! AirlineThemePatch(palette)
-  let a:palette.normal.airline_a[2] = 234
-  let a:palette.normal.airline_b[3] = 237
-  let a:palette.normal.airline_c[2] = 248
-  let a:palette.normal.airline_c[3] = 235
-  let a:palette.normal.airline_x = a:palette.normal.airline_c
-  let a:palette.normal.airline_y = a:palette.normal.airline_b
-  let a:palette.normal.airline_z = a:palette.normal.airline_a
-endfunction
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
+Bundle 'itchyny/lightline.vim'
+if !has('gui_running')
+  set t_Co=256
 endif
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#syntastic#enabled = 0
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline_inactive_collapse = '0'
-let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V', 'V'  : 'V', '' : 'V',
-    \ 's'  : 'S', 'S'  : 'S', '' : 'S'}
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-
-Bundle 'vim-airline/vim-airline-themes'
-
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ }
 Bundle 'scrooloose/nerdtree'
 let NERDTreeWinSize = 40
 let NERDTreeIgnore = [
@@ -345,6 +299,7 @@ Bundle 'ludovicchabant/vim-gutentags'
 
 Bundle 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
+
 
 filetype plugin on
 " }}}

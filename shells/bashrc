@@ -1,0 +1,15 @@
+# Source .profile, a shell agnostic base config
+[ -f ~/.profile ] && source ~/.profile]
+
+# bash completion
+[ -r "/usr/local/etc/bash_completion" ] && source "/usr/local/etc/bash_completion"
+[ -r "/usr/share/bash-completion/bash_completion" ] && source "/usr/share/bash-completion/bash_completion"
+
+# shell options
+shopt -s checkwinsize
+
+# additional files to source
+for file in ~/.{bash_prompt,functions,tokens,localrc}; do
+    [ -r "$file" ] && source "$file"
+done
+unset file

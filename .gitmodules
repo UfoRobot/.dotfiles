@@ -3,5 +3,20 @@
 	url = https://github.com/gmarik/vundle.git
 
 [submodule "zsh/oh-my-zsh"]
-	path = zsh/oh-my-zsh
+	path = shells/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "shells/zsh"]
+	path = shells/antigen
+	url = https://github.com/zsh-users/antigen.git
+[submodule "powerline"]
+	path = powerline/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "tmux/tmp"]
+	path = tmux/tpm
+	url = https://github.com/tmux-plugins/tpm.git
+[submodule "nord/nord-iterm2"]
+	path = nord/nord-iterm2
+	url = https://github.com/arcticicestudio/nord-iterm2.git
+[submodule "wombat/iTerm2-wombat"]
+	path = wombat/iTerm2-wombat
+	url = https://github.com/djoyner/iTerm2-wombat.git

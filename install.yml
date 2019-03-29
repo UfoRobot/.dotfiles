@@ -2,21 +2,31 @@
 ~/.ackrc: ack/ackrc
 
 # bash
-~/.aliases: bash/aliases
-~/.bash_profile: bash/bash_profile
-~/.bash_prompt: bash/bash_prompt
-~/.bashrc: bash/bashrc
-~/.dircolors: bash/dircolors.solarized_ansi_dark
-~/.functions: bash/functions
-~/.inputrc: bash/inputrc
+~/.bash_profile: shells/bash_profile
+~/.bash_prompt: shells/bash_prompt
+~/.bashrc: shells/bashrc
 
 # git
 ~/.gitconfig: git/gitconfig
 ~/.gitignore_global: git/gitignore_global
 
+# shells
+~/.aliases: shells/aliases
+~/.dircolors: shells/dircolors.solarized_ansi_dark
+~/.functions: shells/functions
+~/.inputrc: shells/inputrc
+~/.profile: shells/profile
+
 # tmux
 ~/.tmux.conf: tmux/tmux.conf
+~/.tmux/plugins/tpm: tmux/tpm
 
 # vim
 ~/.vim: vim/
 ~/.vimrc: vim/vimrc
+
+# zsh
+~/.antigen: shells/antigen
+~/.zshrc: shells/zshrc
+
+

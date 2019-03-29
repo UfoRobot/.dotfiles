@@ -29,10 +29,6 @@ which opam &>/dev/null && eval $(opam config env | grep -v MANPATH)
 # Xmodmap
 [[ $OSTYPE =~ ^linux ]] && xmodmap "$HOME/.Xmodmap"
 
-# bash completion
-[ -r "/usr/local/etc/bash_completion" ] && source "/usr/local/etc/bash_completion"
-[ -r "/usr/share/bash-completion/bash_completion" ] && source "/usr/share/bash-completion/bash_completion"
-
 # dircolors
 which dircolors &>/dev/null && eval $(dircolors ~/.dircolors)
 
@@ -48,11 +44,8 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:reboot"
 [ -z "$DISPLAY" ] && DISPLAY=":0.0"
 
 # shell options
-shopt -s checkwinsize
 stty -ixon
 
 # additional files to source
-for file in ~/.{bash_prompt,aliases,functions,tokens,localrc}; do
-    [ -r "$file" ] && source "$file"
-done
-unset file
+[ -f ~/.aliases ] && . ~/.aliases
+
