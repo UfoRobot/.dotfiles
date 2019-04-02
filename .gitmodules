@@ -17,6 +17,6 @@
 [submodule "nord/nord-iterm2"]
 	path = nord/nord-iterm2
 	url = https://github.com/arcticicestudio/nord-iterm2.git
-[submodule "wombat/iTerm2-wombat"]
-	path = wombat/iTerm2-wombat
-	url = https://github.com/djoyner/iTerm2-wombat.git
+[submodule "nord-iterm2"]
+	path = nord-iterm2
+	url = https://github.com/arcticicestudio/nord-iterm2.git

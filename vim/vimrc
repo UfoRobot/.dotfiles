@@ -6,12 +6,6 @@
 set nocompatible
 filetype indent on
 
-" Setup for merlin
-if executable("opam")
-    let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-    execute "set rtp+=" . g:opamshare . "/merlin/vim"
-    execute "set rtp+=" . g:opamshare . "/ocp-indent/vim"
-endif
 
 scriptencoding utf-8
 set encoding=utf-8
@@ -36,7 +30,7 @@ au InsertEnter * set timeoutlen=1
 au InsertLeave * set timeoutlen=1000
 
 " Load bashrc for shell commands
-set shellcmdflag=-ic
+"set shellcmdflag=-ic
 
 " Use system clipboard on OSX
 if has('mac')
@@ -117,13 +111,13 @@ endif
 
 " Files, backups and undo {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if version >= 703
-    set undodir=~/.vim/tmp/undo// " undo files
-endif
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
-set backup                        " enable backups
-set swapfile                      " noswapfile has bitten me!
+"if version >= 703
+"    set undodir=~/.vim/tmp/undo// " undo files
+"endif
+"set backupdir=~/.vim/tmp/backup// " backups
+"set directory=~/.vim/tmp/swap//   " swap files
+"set backup                        " enable backups
+"set swapfile                      " noswapfile has bitten me!
 " }}}
 
 " Text editing {{{
@@ -223,38 +217,78 @@ nmap <leader>e :e %:h/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 runtime macros/matchit.vim
+
+let vundleAlreadyInstalled=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    let vundleAlreadyInstalled=0
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+endif
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
 
-Bundle 'arcticicestudio/nord-vim'
-silent! colorscheme nord
 
-Bundle 'sjl/badwolf'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-liquid'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'ciaranm/detectindent'
+Plugin 'rgrinberg/vim-ocaml'
+Plugin 'ekalinin/Dockerfile.vim'
 
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-liquid'
-Bundle 'tpope/vim-markdown'
-Bundle 'jtratner/vim-flavored-markdown'
-Bundle 'ciaranm/detectindent'
-Bundle 'rgrinberg/vim-ocaml'
-Bundle 'ekalinin/Dockerfile.vim'
-
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 nmap <leader>a :Ack!
 
-Bundle 'itchyny/lightline.vim'
-if !has('gui_running')
-  set t_Co=256
+
+Plugin 'arcticicestudio/nord-vim'
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
 endif
-let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ }
-Bundle 'scrooloose/nerdtree'
+let g:nord_italic = 1
+let g:nord_underline = 1
+"let g:nord_italic_comments = 1
+let g:nord_comment_brightness = 15
+let g:nord_uniform_diff_background = 1
+let g:nord_cursor_line_number_background = 1
+
+Plugin 'vim-airline/vim-airline'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 0
+let g:airline_inactive_collapse = '0'
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V', 'V'  : 'V', '' : 'V',
+   \ 's'  : 'S', 'S'  : 'S', '' : 'S'}
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " tab number
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+Plugin 'scrooloose/nerdtree'
 let NERDTreeWinSize = 40
 let NERDTreeIgnore = [
     \ '\.pyc$',
@@ -266,25 +300,25 @@ let NERDTreeIgnore = [
 nmap <silent> <leader>O :NERDTreeFind<CR>
 nmap <silent> <leader>o :NERDTreeToggle<CR>
 
-" Bundle 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 " let g:syntastic_python_checkers = ['pylint', 'pep8']
 " let g:syntastic_python_pylint_post_args = '-d C0103 -d C0111 --ignored-classes=twisted.internet.reactor'
 
-Bundle 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims=1
 let g:NERDRemoveExtraSpaces=1
 
-Bundle 'klen/python-mode'
+Plugin 'klen/python-mode'
 let g:pymode_run=0
 let g:pymode_breakpoint=0
 let g:pymode_trim_whitespaces=0
 let g:pymode_lint_hold=0
 let g:pymode_rope = 0
 
-Bundle 'YankRing.vim'
+Plugin 'YankRing.vim'
 let g:yankring_history_file='.yankring-hist'
 
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 let g:ycm_confirm_extra_conf    = 0
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm.py'
 let g:ycm_extra_conf_vim_data   = ['&filetype']
@@ -295,11 +329,17 @@ let g:ycm_filetype_blacklist = {
 \}
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 
-Bundle 'ludovicchabant/vim-gutentags'
+Plugin 'ludovicchabant/vim-gutentags'
 
-Bundle 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 
 
+silent! colorscheme nord
+if vundleAlreadyInstalled == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 filetype plugin on
 " }}}
