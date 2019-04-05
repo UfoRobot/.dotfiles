@@ -48,6 +48,18 @@ alias profileme="history | awk '{print \$2}' | awk 'BEGIN{FS=\"|\"}{print \$1}' 
 alias killch="pgrep chroot | xargs sudo kill"
 
 
+
+# Minoconda utility: add / remove to path
+function remove_from_path {
+    directory_to_remove=$1
+    PATH=:$PATH:
+    PATH=${PATH//:$directory_to_remove:/:}
+    PATH=${PATH#:}; PATH=${PATH%:}
+  }
+ alias miniconda_out='remove_from_path $HOME/miniconda3/bin'
+ alias miniconda_in='export PATH=$HOME/miniconda3/bin:$PATH'
+
+
 # Mac OSX specific aliases
 #-------------------------------------------------------------------------------
 if [[ "$OSTYPE" =~ ^darwin ]]; then
